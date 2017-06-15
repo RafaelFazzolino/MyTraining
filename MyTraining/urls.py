@@ -16,9 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from MyTraining.Training.views import index
+from MyTraining.Training.views import config, inicio, ajuda, integrantes, descricao
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index),
+    url(r'^config$', config, name='config'),
+    url(r'^$', inicio, name='inicio'),
+    url(r'^ajuda$', ajuda, name='ajuda'),
+    url(r'^descricao$', descricao, name='descricao'),
+    url(r'^integrantes$', integrantes, name='integrantes'),
 ]
