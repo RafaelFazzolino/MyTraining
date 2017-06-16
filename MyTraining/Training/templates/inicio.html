@@ -1,4 +1,67 @@
 {% extends 'index.html' %}
+{% load widget_tweaks %}
 {% block content %}
-	<h1>Crie seu treino agora!!!</h1>
+	<h1 style="text-align: center">Crie seu treino agora!!!</h1>
+
+	<form method="POST" class="post-form form-horizontal">
+	    {% csrf_token %}
+
+		<div style="margin-left: 30%; width: 600px; float: left; border-radius: 10px; margin-top: 40px; background-color: #1b6d85;">
+		    <div class="form-group" style="margin: 2%;">
+		        <label class="col-md-3 control-label" for="name" style="color: white;">Sexo:</label>
+		        <div class="col-md-9">
+		          {% render_field form.sexo class+="form-control" placeholder="Sexo" %}
+		          {% if form.sexo.errors %}
+		          <div class="alert alert-danger" role="alert">{{form.sexo.errors}}</div>
+		          {% endif %}
+		        </div>
+		    </div>
+
+			<div class="form-group" style="margin: 2%;">
+		        <label class="col-md-3 control-label" for="name" style="color: white;">Objetivos:</label>
+		        <div class="col-md-9">
+		          {% render_field form.objetivos class+="form-control" %}
+		          {% if form.objetivos.errors %}
+		          <div class="alert alert-danger" role="alert">{{form.objetivos.errors}}</div>
+		          {% endif %}
+		        </div>
+		    </div>
+
+			<div class="form-group" style="margin: 2%;">
+		        <label class="col-md-3 control-label" for="name" style="color: white;">Preferências:</label>
+		        <div class="col-md-9">
+		          {% render_field form.preferencias class+="form-control" %}
+		          {% if form.preferencias.errors %}
+		          <div class="alert alert-danger" role="alert">{{form.preferencias.errors}}</div>
+		          {% endif %}
+		        </div>
+		    </div>
+
+			<div class="form-group" style="margin: 2%;">
+		        <label class="col-md-3 control-label" for="name" style="color: white;">Doenças:</label>
+		        <div class="col-md-9">
+		          {% render_field form.doencas class+="form-control" %}
+		          {% if form.doencas.errors %}
+		          <div class="alert alert-danger" role="alert">{{form.doencas.errors}}</div>
+		          {% endif %}
+		        </div>
+		    </div>
+
+			<div class="form-group" style="margin: 2%;">
+		        <label class="col-md-3 control-label" for="name" style="color: white;">Dias disponíveis:</label>
+		        <div class="col-md-9">
+		          {% render_field form.dias class+="form-control" %}
+		          {% if form.dias.errors %}
+		          <div class="alert alert-danger" role="alert">{{form.dias.errors}}</div>
+		          {% endif %}
+		        </div>
+		    </div>
+
+			<div class="form-group" style="margin: 2%;">
+	            <div class="col-md-12 text-right">
+	              <button type="submit" class="btn btn-primary btn-lg">Executar</button>
+	            </div>
+			</div>
+		</div>
+    </form>
 {% endblock %}

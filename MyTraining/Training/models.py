@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -21,3 +22,5 @@ class ConfigNetwork(models.Model):
 
     def __str__(self):
         return self.name
+
+    # TODO fazer classe de usuário
