@@ -35,26 +35,60 @@ def execute_rna(sexo, tipo_objetivo, tipo_preferencia, tipo_doenca, tipo_dias):
 
     errors = []
     it = []
-    while epocasPercorridas < config.epochs and error > config.erro_max:
+    while error > config.erro_max:
         error = trainer.train()
         epocasPercorridas += 1
         errors.append(error)
         it.append(epocasPercorridas)
-    graph = []
-    idx = 0
-    for e in errors:
-        temp = []
-        temp.append(idx)
-        temp.append(e)
-        idx += 1
-        graph.append(temp)
+    # graph = []
+    # idx = 0
+    # for e in errors:
+    #     temp = []
+    #     temp.append(idx)
+    #     temp.append(e)
+    #     idx += 1
+    #     graph.append(temp)
+
+    result = network.activate([sexo, tipo_objetivo,
+                               tipo_preferencia, tipo_doenca, tipo_dias])
+
+    res1 = 1
+    res2 = 1
+    res3 = 1
+
+    if result[0] >= 1.5:
+        res1 = 2
+
+    if result[1] >= 1.5:
+        res2 = 2
+
+    if result[2] >= 1.5:
+        res3 = 2
+
+    res = ''
+
+    if res1 == 1 and res2 == 1 and res3 == 1:
+        res = 'Alpha'
+    if res1 == 1 and res2 == 1 and res3 == 2:
+        res = 'Charlie'
+    if res1 == 1 and res2 == 2 and res3 == 1:
+        res = 'Echo'
+    if res1 == 1 and res2 == 2 and res3 == 2:
+        res = 'Golf'
+    if res1 == 2 and res2 == 1 and res3 == 1:
+        res = '+Alpha'
+    if res1 == 2 and res2 == 1 and res3 == 2:
+        res = '+Charlie'
+    if res1 == 2 and res2 == 2 and res3 == 1:
+        res = '+Echo'
+    if res1 == 2 and res2 == 2 and res3 == 2:
+        res = '+Golf'
 
     context = {
         'error': error,
         'epocas': epocasPercorridas,
         'pesos_iniciais': pesos_iniciais,
         'pesos_finais': network.params,
-        'result': network.activate([sexo, tipo_objetivo, tipo_preferencia,
-                                    tipo_doenca, tipo_dias]),
+        'result': res,
     }
     return context
