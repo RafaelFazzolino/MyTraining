@@ -2,8 +2,8 @@ from array import array
 
 from django.shortcuts import render
 
-from MyTraining.Training.forms import ConfigForm, TreinadorForm
-from MyTraining.Training.models import ConfigNetwork
+from MyTraining.Training.forms import ConfigForm, TreinadorForm, SugestForm
+from MyTraining.Training.models import ConfigNetwork, SugestResult
 from MyTraining.Training.network import execute_rna
 
 
@@ -12,7 +12,7 @@ def inicio(request):
     if request.method == 'POST':
         form = TreinadorForm(request.POST)
         if form.is_valid():
-            return render(request, 'result.html', generate_group(form.cleaned_data))
+            return result(request, generate_group(form.cleaned_data))
     else:
         form = TreinadorForm()
         context['form'] = form
@@ -58,9 +58,22 @@ def generate_group(form):
         'doencas': tipo_doenca,
         'dias': tipo_dias,
         'res': result['result'],
+        'result': result['res'],
     }
 
     return context
+
+
+def result(request, context):
+    if request.method == 'POST':
+        form = SugestForm(request.POST)
+        if form.is_valid():
+            save_sugest(form.cleaned_data)
+            return render(request, 'inicio.html', context)
+    else:
+        form = SugestForm()
+    context['form'] = form
+    return render(request, 'result.html', context)
 
 
 def config(request):
@@ -100,3 +113,17 @@ def save_config(form):
     config.momentum = form['momentum']
     config.learningrate = form['learningrate']
     config.save()
+
+
+def save_sugest(form):
+    sugest = SugestResult()
+    sugest.tipo_sexo = form['sexo']
+    sugest.tipo_objetivos = form['objetivos']
+    sugest.tipo_preferencias = form['preferencias']
+    sugest.tipo_doencas = form['doencas']
+    sugest.tipo_dias = form['dias']
+    sugest.result1 = form['result'][0]
+    sugest.result2 = form['result'][1]
+    sugest.result3 = form['result'][2]
+    sugest.result = form['sugest']
+    sugest.save()

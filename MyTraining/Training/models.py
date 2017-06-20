@@ -23,4 +23,14 @@ class ConfigNetwork(models.Model):
     def __str__(self):
         return self.name
 
-    # TODO fazer classe de usuário
+
+class SugestResult(models.Model):
+    tipo_sexo = models.IntegerField(default=1)
+    tipo_objetivos = models.IntegerField(default=2)
+    tipo_preferencias = models.IntegerField(default=1)
+    tipo_doencas = models.IntegerField(default=1)
+    tipo_dias = models.IntegerField(default=1)
+    result1 = models.IntegerField(default=1)
+    result2 = models.IntegerField(default=1)
+    result3 = models.IntegerField(default=1)
+    result = models.CharField(max_length=30)

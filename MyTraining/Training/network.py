@@ -90,5 +90,6 @@ def execute_rna(sexo, tipo_objetivo, tipo_preferencia, tipo_doenca, tipo_dias):
         'pesos_iniciais': pesos_iniciais,
         'pesos_finais': network.params,
         'result': res,
+        'res': result,
     }
     return context

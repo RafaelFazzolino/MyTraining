@@ -1,7 +1,48 @@
 {% extends 'index.html' %}
+{% load widget_tweaks %}
 {% block content %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	    $("#sugest").hide();
+	    $("#sim").click(function(){
+	        window.location = '';
+	    });
+	    $("#enviar").click(function(){
+	        window.location = '';
+	    });
+	    $("#nao").click(function(){
+	        $("#sugest").show();
+	    });
+	});
+	</script>
 
 	<h1>Seu treino é: {{ res }}</h1>
+
+	<h2>Treino correto?</h2>
+	<div id="sn" style="float: left; margin-left: 5%">
+		<div class="col-md-12 text-right">
+			<button type="submit" id="sim" class="btn btn-primary btn-lg">Sim</button>
+		</div>
+		<div class="col-md-12 text-right">
+			<button type="submit" id="nao" class="btn btn-primary btn-lg">Não</button>
+		</div>
+	</div>
+	<p></p>
+	<div id="sugest" style="display: block; float: left; margin-left: 5%">
+
+			<div style=" margin-left: 30%; width: 600px; float: left; border-radius: 10px; margin-top: 40px; background-color: #1b6d85;">
+				<label class="col-md-3 control-label" for="name" style="color: white;">Selecione o treino ideal:</label>
+				<div class="col-md-9">
+		          {% render_field form.sugest class+="form-control" %}
+					<div class="col-md-12 text-right">
+						<button type="submit" id="enviar" class="btn btn-primary btn-lg">Enviar</button>
+					</div>
+		        </div>
+
+
+			</div>
+	</div>
 
 
 

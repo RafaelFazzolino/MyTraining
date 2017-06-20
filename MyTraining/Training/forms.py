@@ -14,6 +14,19 @@ class ConfigForm(forms.Form):
     peso_end = forms.FloatField()
 
 
+class SugestForm(forms.Form):
+    TREINO_CHOICES = (
+        (1, "Alpha1"),
+        (2, "Charlie"),
+        (3, "Echo1"),
+        (4, "Golf1"),
+        (5, "Alpha + 1"),
+        (6, "Charlie + 1"),
+        (7, "Echo + 1"),
+        (8, "Golf + 1"),
+    )
+    sugest = forms.ChoiceField(choices=TREINO_CHOICES)
+
 class TreinadorForm(forms.Form):
     SEXO_CHOICES = (
         (1, "Masculino"),
