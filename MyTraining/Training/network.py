@@ -35,7 +35,7 @@ def execute_rna(sexo, tipo_objetivo, tipo_preferencia, tipo_doenca, tipo_dias):
 
     errors = []
     it = []
-    while error > config.erro_max:
+    while error > config.erro_max and epocasPercorridas <= 2000:
         error = trainer.train()
         epocasPercorridas += 1
         errors.append(error)

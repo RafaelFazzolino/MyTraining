@@ -1,4 +1,26 @@
 {% extends 'index.html' %}
 {% block content %}
-	<h1>Descrição do Sistema</h1>
+	<h1 style="text-align: center">Descrição do Sistema</h1>
+
+	<div class="descricao" style="width: 45%; font-size: larger; align-content: center; margin-left: 30%; color: white; border-radius: 10px; margin-top: 40px; background-color: #1b6d85;">
+
+		<p style="width:70%; text-align: center; margin-left: 15%;">O projeto "MyTraining" busca criar um Personal Trainer sem a necessidade
+			de um atendimento longo com um profissional humano. Durante a primeira fase
+			de implantação do sistema, o mesmo deverá ser utilizado como ferramenta de apoio a
+			funcionários de qualquer academias.
+		</p>
+		<p style="width:70%; text-align: center; margin-left: 15%;">
+			Enquanto o sistema sugere treinos para os clientes, o profissional registra os treinos
+			como adequados ou não. Caso o treino sugerido não seja adequado ao cliente, o profissional
+			pode informar qual seria o treino ideal, "ensinando" o sistema.
+		</p>
+		<p style="width:70%; text-align: center; margin-left: 15%;">
+			Este aprendizado ocorre por meio da inclusão de amostras no dataset de aprendizado. Este dataset
+			é registrado e mantido no banco de dados, garantindo que o sistema não perca conhecimento ao ser
+			desligado. O intuito é que, com o passar do tempo, a rede possa sugerir treinos com ótima precisão.
+
+		</p>
+
+	</div>
+
 {% endblock %}
