@@ -49,3 +49,29 @@ def create_dataset():
     dataset.addSample([2, 2, 2, 2, 2], [2,2,2])  # Treino Hot + 2
 
     return dataset
+
+
+def create_dataset_treino():
+    dataset = SupervisedDataSet(5, 3)
+
+    dataset.addSample([1, 1, 2, 1, 1], [1,1,2])  # Treino Charlie 1
+    dataset.addSample([1, 1, 2, 1, 2], [1,1,2])  # Treino Charlie 2
+    dataset.addSample([1, 1, 2, 2, 1], [1,1,2])  # Treino Delta 1
+    dataset.addSample([1, 1, 2, 2, 2], [1,1,2])  # Treino Delta 2
+
+    dataset.addSample([1, 2, 1, 1, 1], [1,2,1])  # Treino Echo 1
+    dataset.addSample([1, 2, 1, 1, 2], [1,2,1])  # Treino Echo 2
+    dataset.addSample([1, 2, 1, 2, 1], [1,2,1])  # Treino Fox 1
+    dataset.addSample([1, 2, 1, 2, 2], [1,2,1])  # Treino Fox 2
+
+    dataset.addSample([2, 1, 2, 1, 1], [2,1,2])  # Treino Charlie + 1
+    dataset.addSample([2, 1, 2, 1, 2], [2,1,2])  # Treino Charlie + 2
+    dataset.addSample([2, 1, 2, 2, 1], [2,1,2])  # Treino Delta + 1
+    dataset.addSample([2, 1, 2, 2, 2], [2,1,2])  # Treino Delta + 2
+
+    dataset.addSample([2, 2, 1, 1, 1], [2,2,1])  # Treino Echo + 1
+    dataset.addSample([2, 2, 1, 1, 2], [2,2,1])  # Treino Echo + 2
+    dataset.addSample([2, 2, 1, 2, 1], [2,2,1])  # Treino Fox + 1
+    dataset.addSample([2, 2, 1, 2, 2], [2,2,1])  # Treino Fox + 2
+
+    return dataset

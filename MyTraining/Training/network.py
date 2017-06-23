@@ -1,3 +1,4 @@
+import json
 from pybrain.supervised import BackpropTrainer
 from pybrain.tools.shortcuts import buildNetwork
 
@@ -21,7 +22,7 @@ def execute_rna(sexo, tipo_objetivo, tipo_preferencia, tipo_doenca, tipo_dias):
         bias = True
 
     # dimensões de entrada e saida, argumento 2 é a quantidade de camadas intermediárias
-    network = buildNetwork(dataset.indim, int(config.num_camadas), dataset.outdim, bias=bias)
+    network = buildNetwork(dataset.indim, int(config.num_camadas), dataset.outdim, bias=True)
     trainer = BackpropTrainer(network, dataset, learningrate=float(config.learningrate),
                               momentum=float(config.momentum))
 
@@ -40,14 +41,14 @@ def execute_rna(sexo, tipo_objetivo, tipo_preferencia, tipo_doenca, tipo_dias):
         epocasPercorridas += 1
         errors.append(error)
         it.append(epocasPercorridas)
-    # graph = []
-    # idx = 0
-    # for e in errors:
-    #     temp = []
-    #     temp.append(idx)
-    #     temp.append(e)
-    #     idx += 1
-    #     graph.append(temp)
+    graph = []
+    idx = 0
+    for e in errors:
+        temp = []
+        temp.append(idx)
+        temp.append(e)
+        idx += 1
+        graph.append(temp)
 
     result = network.activate([sexo, tipo_objetivo,
                                tipo_preferencia, tipo_doenca, tipo_dias])
@@ -91,5 +92,7 @@ def execute_rna(sexo, tipo_objetivo, tipo_preferencia, tipo_doenca, tipo_dias):
         'pesos_finais': network.params,
         'result': res,
         'res': result,
+        'graph': json.dumps(graph),
+
     }
     return context

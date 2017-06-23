@@ -59,6 +59,11 @@ def generate_group(form):
         'dias': tipo_dias,
         'res': result['result'],
         'result': result['res'],
+        'graph': result['graph'],
+        'pesos_finais': result['pesos_finais'],
+        'pesos_iniciais': result['pesos_iniciais'],
+        'error': result['error'],
+        'epocas': result['epocas'],
     }
 
     return context

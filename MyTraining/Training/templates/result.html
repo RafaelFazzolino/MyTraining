@@ -2,6 +2,9 @@
 {% load widget_tweaks %}
 {% block content %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script>
 	$(document).ready(function(){
 	    $("#sugest").hide();
@@ -16,19 +19,48 @@
 	    });
 	});
 	</script>
+	<script type="text/javascript">
+			google.charts.load('current', {packages: ['corechart', 'line']});
+			google.charts.setOnLoadCallback(drawBasic);
+
+			function drawBasic() {
+
+			      var data = new google.visualization.DataTable();
+			      data.addColumn('number', 'Epoca');
+			      data.addColumn('number', 'Erro');
+
+			      data.addRows({{ graph|safe }});
+
+			      var options = {
+			        hAxis: {
+			          title: 'Epoca'
+			        },
+			        vAxis: {
+			          title: 'Erro'
+			        }
+			      };
+
+			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+			      chart.draw(data, options);
+			    }
+		</script>
 
 	<h1>Seu treino é: {{ res }}</h1>
+
+	<div style="margin-top: 5%; float: left;">
+		<b>Erro:</b> <span class="label label-danger" style="font-size: larger">{{ error }}</span>
+		<b>Epocas:</b> <span class="label label-warning" style="font-size: larger">{{ epocas }}</span>
+	</div>
 
 	<h2>Treino correto?</h2>
 	<div id="sn" style="float: left; margin-left: 5%">
 		<div class="col-md-12 text-right">
 			<button type="submit" id="sim" class="btn btn-primary btn-lg">Sim</button>
-		</div>
-		<div class="col-md-12 text-right">
 			<button type="submit" id="nao" class="btn btn-primary btn-lg">Não</button>
 		</div>
 	</div>
-	<p></p>
+
 	<div id="sugest" style="display: block; float: left; margin-left: 5%">
 
 			<div style=" margin-left: 30%; width: 600px; float: left; border-radius: 10px; margin-top: 40px; background-color: #1b6d85;">
@@ -43,6 +75,27 @@
 
 			</div>
 	</div>
+
+	<div id="chart_div" style="margin-top: 20%;"></div>
+
+	<div style="float:left; width: 200px; margin-left: 5%; background-color: #8c8c8c; margin-top: 5%; font-size: larger">
+		<b>Pesos Iniciais:</b>
+		<ul class="list-group">
+			{% for peso in pesos_iniciais %}
+		        <li class="list-group-item">{{ peso }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div style="float:right; width: 200px; margin-right: 15%; background-color: #8c8c8c; margin-top: 5%; font-size: larger">
+		<b>Pesos Finais:</b>
+		<ul class="list-group">
+			{% for peso in pesos_finais %}
+		        <li class="list-group-item">{{ peso }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
 
 
 
